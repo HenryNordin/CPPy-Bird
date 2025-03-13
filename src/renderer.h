@@ -2,12 +2,13 @@
 #define RENDERER_H
 
 #include "SDL.h"
+#include "bird.h"
 
 class Renderer {
     public:
         Renderer(int ScreenWidth, int ScreenHeight);
         ~Renderer();
-        void Render();
+        void Render(Bird &bird);
 
     private:
         SDL_Window *sdl_window;

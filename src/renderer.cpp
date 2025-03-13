@@ -37,10 +37,12 @@ Renderer::~Renderer() {
 }
 
 
-void Renderer::Render(){
+void Renderer::Render(Bird &bird){
     // Clear screen
     SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
     SDL_RenderClear(sdl_renderer);
+
+    bird.DrawYourself(sdl_renderer);
 
     // Update Screen
     SDL_RenderPresent(sdl_renderer);

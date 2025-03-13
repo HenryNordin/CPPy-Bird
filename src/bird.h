@@ -6,8 +6,18 @@
 class Bird {
     public:
         Bird();
-        void Update();
+        void Fly();
+        void Fall();
+        void DrawYourself(SDL_Renderer* renderer);
     private:
+    bool collided;
+    bool invincible;
+
+    double velocity = 0;
+
+    const double gravity = 0.5;
+
+    double x,y;
 };
 
 #endif

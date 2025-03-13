@@ -4,6 +4,7 @@
 #include "SDL.h"
 #include "controller.h"
 #include "renderer.h"
+#include "bird.h"
 
 
 class Game {
@@ -15,7 +16,7 @@ class Game {
     private:
 
         //Variables
-        // Bird bird;
+        Bird bird;
         void Update();
 
 };

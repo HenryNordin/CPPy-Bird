@@ -12,7 +12,7 @@ int main() {
     Renderer renderer(screen_width, screen_height);
     Controller controller;
     // Height, Widt
-    Game game(600, 400);
+    Game game(screen_width, screen_height);
     game.Run(controller, renderer, MsPerFrame);
     std::cout << "Game Over!" << std::endl;
     return 0;
