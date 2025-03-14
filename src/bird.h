@@ -1,6 +1,7 @@
 #ifndef BIRD_H
 #define BIRD_H
 
+#include <string>
 #include "SDL.h"
 
 class Bird {
@@ -12,8 +13,6 @@ class Bird {
         void Fall();
         void DrawYourself(SDL_Renderer* renderer);
     private:
-        SDL_Texture* birdSprite1;    
-
         bool collided;
         bool invincible;
         bool alive;
@@ -26,6 +25,10 @@ class Bird {
 
         void RoofCollision();
         void GroundCollision();
+
+        std::string sprite_path;
+        SDL_Texture* sprite;
+        SDL_Rect srcRect;
 };
 
 #endif
