@@ -14,7 +14,7 @@ Renderer::Renderer(int screen_width, int screen_height) {
     }
 
     // Create Window
-    sdl_window = SDL_CreateWindow("CCPy Bird", 0,
+    sdl_window = SDL_CreateWindow("CPPy Bird", 0,
                                 0, screen_width,
                                 screen_height, SDL_WINDOW_SHOWN);
 
@@ -42,13 +42,38 @@ void Renderer::Render(Bird &bird){
     SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
     SDL_RenderClear(sdl_renderer);
 
+    DrawBackground(sdl_renderer);
     bird.DrawYourself(sdl_renderer);
+    DrawGround(sdl_renderer);
 
     // Update Screen
     SDL_RenderPresent(sdl_renderer);
 }
 
 
-void Renderer::Update() {
+void Renderer::DrawBackground(SDL_Renderer* renderer) {
+    SDL_SetRenderDrawColor(renderer, 135, 206, 235, 255);
+    SDL_RenderClear(renderer);
+}
 
+void Renderer::DrawGround(SDL_Renderer* renderer) {
+    int windowWidth, windowHeight;
+    SDL_GetWindowSize(sdl_window, &windowWidth, &windowHeight);
+
+    // Grass
+    SDL_SetRenderDrawColor(renderer, 16, 151, 0, 255);
+    SDL_Rect grassRect = {0, 480, windowWidth, windowHeight / 5};
+    SDL_RenderFillRect(renderer, &grassRect);
+
+    // Ground
+    SDL_SetRenderDrawColor(renderer, 117, 101, 80, 255);
+    SDL_Rect groundRect = {0, 490, windowWidth, windowHeight / 5};
+    SDL_RenderFillRect(renderer, &groundRect);
+
+    // Border lines
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
+    for (int y : {480, 490}) {
+        SDL_Rect borderRect = {0, y, windowWidth, 1};
+        SDL_RenderFillRect(renderer, &borderRect);
+    }
 }

@@ -13,6 +13,10 @@ class Renderer {
     private:
         SDL_Window *sdl_window;
         SDL_Renderer *sdl_renderer;
+
+        void DrawBackground(SDL_Renderer* renderer);
+        void DrawGround(SDL_Renderer* renderer);
+
         void Update();
 
 };
