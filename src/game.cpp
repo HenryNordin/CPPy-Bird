@@ -6,11 +6,12 @@ Game::Game(std::size_t grid_width, std::size_t grid_height)
     : pipe1(400.0f), pipe2(625.0f)
 {
     //Code
+    running = false;
     
 }
 
 void Game::Run(Controller const &controller, Renderer &renderer, double MsPerFrame){
-    bool running = true;
+    running = true;
     unsigned int frame_start;
     unsigned int frame_end;
     unsigned int frame_duration;
@@ -41,6 +42,10 @@ void Game::Update() {
     bird.Update();
     pipe1.Update(); 
     pipe2.Update();
+
+    if (bird.GetAlive() == false){
+        running = false;
+    }
 
 }
 

@@ -17,6 +17,7 @@ class Game {
     private:
 
         //Variables
+        bool running;
         Bird bird;
         Pipe pipe1;
         Pipe pipe2;

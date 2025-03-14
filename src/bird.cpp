@@ -8,6 +8,10 @@ Bird::Bird() {
     alive = true;
 }
 
+bool Bird::GetAlive(){
+    return alive;
+}
+
 void Bird::RoofCollision(){
     if (y <= 0)
     {

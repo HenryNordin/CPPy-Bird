@@ -6,6 +6,7 @@
 class Bird {
     public:
         Bird();
+        bool GetAlive();
         void Update();
         void Fly();
         void Fall();
