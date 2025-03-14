@@ -6,18 +6,25 @@
 class Bird {
     public:
         Bird();
+        void Update();
         void Fly();
         void Fall();
         void DrawYourself(SDL_Renderer* renderer);
     private:
-    bool collided;
-    bool invincible;
+        SDL_Texture* birdSprite1;    
 
-    double velocity = 0;
+        bool collided;
+        bool invincible;
+        bool alive;
 
-    const double gravity = 0.5;
+        float velocity = 0;
 
-    double x,y;
+        const double gravity = 0.5;
+
+        float x,y;
+
+        void RoofCollision();
+        void GroundCollision();
 };
 
 #endif

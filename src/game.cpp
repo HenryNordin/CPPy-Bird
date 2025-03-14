@@ -36,7 +36,7 @@ void Game::Run(Controller const &controller, Renderer &renderer, double MsPerFra
 
 void Game::Update() {
     //std::cout << "Test" << std::endl;
-    bird.Fall();
+    bird.Update();
 
 }
 

@@ -5,6 +5,25 @@
 Bird::Bird() {
     x = 175;
     y = 0;
+    alive = true;
+}
+
+void Bird::RoofCollision(){
+    if (y <= 0)
+    {
+        y = 0;
+        velocity = 0;
+    }
+}
+
+void Bird::GroundCollision(){
+    if (y >= 450)
+    {
+        y = 450;
+        velocity = 0;
+        alive = false;
+        //this.sprite = new Image("file:src/gfx/birdsprite_2.png");
+    }
 }
 
 void Bird::Fly(){
@@ -27,6 +46,14 @@ void Bird::Fall(){
         //this.sprite = new image;
     }
     std::cout << "x: " << x << " y: "<<y<< " velocity: "<< velocity << std::endl;
+}
+
+void Bird::Update(){
+    if (alive) {
+        Fall();
+    }
+    GroundCollision();
+    RoofCollision();
 }
 
 void Bird::DrawYourself(SDL_Renderer* renderer){
