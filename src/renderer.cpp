@@ -14,7 +14,7 @@ Renderer::Renderer(int screen_width, int screen_height) {
     }
 
     // Create Window
-    sdl_window = SDL_CreateWindow("CPPy Bird", 0,
+    sdl_window = SDL_CreateWindow("Cpp-y Bird", 0,
                                 0, screen_width,
                                 screen_height, SDL_WINDOW_SHOWN);
 
