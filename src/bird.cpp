@@ -45,7 +45,7 @@ void Bird::Fall(){
     if (velocity > 2) {
         //this.sprite = new image;
     }
-    std::cout << "x: " << x << " y: "<<y<< " velocity: "<< velocity << std::endl;
+    //std::cout << "x: " << x << " y: "<<y<< " velocity: "<< velocity << std::endl;
 }
 
 void Bird::Update(){

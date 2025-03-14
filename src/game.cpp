@@ -2,7 +2,9 @@
 #include "SDL.h"
 #include <iostream>
 int score = 0;
-Game::Game(std::size_t grid_width, std::size_t grid_height) {
+Game::Game(std::size_t grid_width, std::size_t grid_height)
+    : pipe1(400.0f), pipe2(625.0f)
+{
     //Code
     
 }
@@ -19,7 +21,7 @@ void Game::Run(Controller const &controller, Renderer &renderer, double MsPerFra
         frame_start = SDL_GetTicks();
         controller.HandleInput(running, bird);
         Update();
-        renderer.Render(bird);
+        renderer.Render(bird, pipe1, pipe2);
         frame_end = SDL_GetTicks();
         
         //std::cout << frame_count << std::endl;
@@ -37,6 +39,8 @@ void Game::Run(Controller const &controller, Renderer &renderer, double MsPerFra
 void Game::Update() {
     //std::cout << "Test" << std::endl;
     bird.Update();
+    pipe1.Update(); 
+    pipe2.Update();
 
 }
 

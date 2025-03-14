@@ -3,12 +3,13 @@
 
 #include "SDL.h"
 #include "bird.h"
+#include "pipe.h"
 
 class Renderer {
     public:
         Renderer(int ScreenWidth, int ScreenHeight);
         ~Renderer();
-        void Render(Bird &bird);
+        void Render(Bird &bird, Pipe &pipe_1, Pipe &pipe_2);
 
     private:
         SDL_Window *sdl_window;

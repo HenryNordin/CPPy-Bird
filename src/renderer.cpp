@@ -37,13 +37,16 @@ Renderer::~Renderer() {
 }
 
 
-void Renderer::Render(Bird &bird){
+void Renderer::Render(Bird &bird, Pipe &pipe_1, Pipe &pipe_2){
     // Clear screen
     SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
     SDL_RenderClear(sdl_renderer);
 
     DrawBackground(sdl_renderer);
     bird.DrawYourself(sdl_renderer);
+    pipe_1.DrawYourself(sdl_renderer);
+    pipe_2.DrawYourself(sdl_renderer);
+
     DrawGround(sdl_renderer);
 
     // Update Screen

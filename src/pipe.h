@@ -5,11 +5,16 @@
 
 class Pipe {
     public:
-        Pipe();
+        Pipe(float x_start);
         void Update();
         void DrawYourself(SDL_Renderer* renderer);
     private:
-        float x,y;
+        float x, upper_y, lower_y, x_start;
+        int pipe_gap;
+        void MoveLeft();
+        float UpperYGenerator();
+
+        bool offscreen;
 };
 
 #endif

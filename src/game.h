@@ -5,6 +5,7 @@
 #include "controller.h"
 #include "renderer.h"
 #include "bird.h"
+#include "pipe.h"
 
 
 class Game {
@@ -17,6 +18,8 @@ class Game {
 
         //Variables
         Bird bird;
+        Pipe pipe1;
+        Pipe pipe2;
         void Update();
 
 };
