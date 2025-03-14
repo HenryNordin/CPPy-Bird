@@ -1,13 +1,13 @@
 #include "pipe.h"
 #include "SDL.h"
+#include "SDL_image.h"
+#include <string>
 #include <iostream>
 #include <random>
 
 Pipe::Pipe(float x_start) {
     x = x_start;
-    lower_y = 0;
-
-    pipe_gap = 420;
+    lower_y = upper_y + pipe_gap;
     offscreen = false;
 }
 
@@ -16,45 +16,35 @@ void Pipe::Update(){
 }
 
 void Pipe::DrawYourself(SDL_Renderer* renderer){
-    SDL_Rect block_top;
-    block_top.w = 64;
-    block_top.h = 256;
-    block_top.x = static_cast<int>(x);  // x-coordinate (convert to int)
-    block_top.y = static_cast<int>(upper_y);  // y-coordinate (convert to int)
+    sprite_path = "assets/images/pipe_sprite.png";
+    sprite = IMG_LoadTexture(renderer, sprite_path.c_str());
 
-    // Set the color to draw the bird (example: red)
-    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);  // Red color (RGBA)
+    int textureWidth, textureHeight;
+    SDL_QueryTexture(sprite, nullptr, nullptr, &textureWidth, &textureHeight);
+    SDL_Rect srcRect1 = { 0, 0, textureWidth, textureHeight };
+    SDL_Rect destRect1 = { static_cast<int>(x), static_cast<int>(upper_y), 64, 256 };
+    SDL_RenderCopy(renderer, sprite, &srcRect1, &destRect1);
 
-    // Draw the rectangle (bird)
-    SDL_RenderFillRect(renderer, &block_top);
+    SDL_QueryTexture(sprite, nullptr, nullptr, &textureWidth, &textureHeight);
+    SDL_Rect srcRect2 = { 0, 0, textureWidth, textureHeight };
+    SDL_Rect destRect2 = { static_cast<int>(x), static_cast<int>(lower_y), 64, 256 };
 
-
-    SDL_Rect block_bottom;
-    block_bottom.w = 64;
-    block_bottom.h = 256;
-    block_bottom.x = static_cast<int>(x);  // x-coordinate (convert to int)
-    block_bottom.y = static_cast<int>(lower_y);  // y-coordinate (convert to int)
-
-    // Set the color to draw the bird (example: red)
-    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);  // Red color (RGBA)
-
-    // Draw the rectangle (bird)
-    SDL_RenderFillRect(renderer, &block_bottom);
+    SDL_RenderCopy(renderer, sprite, &srcRect2, &destRect2);
+    SDL_DestroyTexture(sprite);
 }
 
 void Pipe::MoveLeft(){
     if (offscreen == false) {
-        x -= 4;
+        x -= 4.0f;
     }
-    if (x <= -64){
+    if (x <= -64.0f){
         offscreen = true;
-        x = 400;
+        x = 400.0f;
         upper_y = UpperYGenerator();
         lower_y = upper_y + pipe_gap;
-
     }
 
-    if (x == 400){
+    if (x == 400.0f){
         offscreen = false;
     }
 }
