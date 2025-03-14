@@ -5,9 +5,7 @@ int score = 0;
 Game::Game(std::size_t grid_width, std::size_t grid_height)
     : pipe1(400.0f), pipe2(625.0f)
 {
-    //Code
-    running = false;
-    
+    running = false;   
 }
 
 void Game::Run(Controller const &controller, Renderer &renderer, double MsPerFrame){
@@ -24,8 +22,6 @@ void Game::Run(Controller const &controller, Renderer &renderer, double MsPerFra
         Update();
         renderer.Render(bird, pipe1, pipe2);
         frame_end = SDL_GetTicks();
-        
-        //std::cout << frame_count << std::endl;
 
         frame_count++;
         frame_duration = frame_end - frame_start;
@@ -46,7 +42,15 @@ void Game::Update() {
     if (bird.GetAlive() == false){
         running = false;
     }
+    CollisionDetection(bird, pipe1, pipe2);
+}
 
+void Game::CollisionDetection(Bird& bird, Pipe pipe1, Pipe pipe2) {
+    bool collided = false;
+    collided = pipe1.CollideWithBird(bird) || pipe2.CollideWithBird(bird);
+    if (collided) {
+        bird.SetCollided();
+    }
 }
 
 int Game::GetScore() const { return score;}

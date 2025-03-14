@@ -8,12 +8,17 @@ Bird::Bird() {
     x = 175;
     y = 0;
     alive = true;
+    collided = false;
     sprite = nullptr;
     sprite_path = "assets/images/bird_sprite_1.png";
 }
 
 bool Bird::GetAlive(){
     return alive;
+}
+
+void Bird::SetCollided(){
+    collided = true;
 }
 
 void Bird::RoofCollision(){
@@ -35,13 +40,12 @@ void Bird::GroundCollision(){
 }
 
 void Bird::Fly(){
-    if (!collided | invincible) {
+    if (!collided || invincible) {
         velocity = -10.0;
         if (velocity < -2) {
             sprite_path = "assets/images/bird_sprite_3.png";
         }
     }
-    std::cout << "Fly" << std::endl;
 }
 
 void Bird::Fall(){
@@ -85,4 +89,12 @@ void Bird::DrawYourself(SDL_Renderer* renderer) {
 
     SDL_RenderCopy(renderer, sprite, &srcRect, &destRect);
     SDL_DestroyTexture(sprite);
+}
+
+float Bird::GetX(){
+    return x;
+}
+
+float Bird::GetY(){
+    return y;
 }

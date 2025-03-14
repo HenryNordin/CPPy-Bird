@@ -7,6 +7,7 @@
 
 Pipe::Pipe(float x_start) {
     x = x_start;
+    upper_y = UpperYGenerator();
     lower_y = upper_y + pipe_gap;
     offscreen = false;
 }
@@ -55,4 +56,18 @@ float Pipe::UpperYGenerator(){
     std::uniform_real_distribution<float> dis(0.0f, (600 - 2 * 32 - pipe_gap));
 
     return dis(gen) - 100.0f;
+}
+
+bool Pipe::CollideWithBird(Bird bird){
+    // Top
+    if ((x < bird.GetX() + 32) && (x + 64 > bird.GetX()) && (upper_y < bird.GetY() + 32)
+            && (upper_y + 256 > bird.GetY())) {
+        return true;
+    }
+    // Bottom
+    if ((x < bird.GetX() + 32) && (x + 64 > bird.GetX()) && (lower_y < bird.GetY() + 32)
+            && (lower_y + 256 > bird.GetY())) {
+        return true;
+    }
+    return false;
 }

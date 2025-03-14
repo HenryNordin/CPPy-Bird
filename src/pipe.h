@@ -3,12 +3,14 @@
 
 #include <string>
 #include "SDL.h"
+#include "bird.h"
 
 class Pipe {
     public:
         Pipe(float x_start);
         void Update();
         void DrawYourself(SDL_Renderer* renderer);
+        bool CollideWithBird(Bird bird);
     private:
         float x, upper_y, lower_y, x_start;
         const float pipe_gap = 420;

@@ -15,13 +15,12 @@ class Game {
         int GetScore() const;
 
     private:
-
-        //Variables
         bool running;
         Bird bird;
         Pipe pipe1;
         Pipe pipe2;
         void Update();
+        void CollisionDetection(Bird& bird, Pipe pipe1, Pipe pipe2);
 
 };
 

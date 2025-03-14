@@ -8,6 +8,9 @@ class Bird {
     public:
         Bird();
         bool GetAlive();
+        void SetCollided();
+        float GetX();
+        float GetY();
         void Update();
         void Fly();
         void Fall();
